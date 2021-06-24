@@ -16,7 +16,8 @@ clean()
 nome = input('Digite seu nome: ')
 email = input('Digite seu E-mail: ')
 arquivo = open('E-mail_e_Senha.txt', 'a')
-arquivo.write(f'Nome: "{nome}".  E-mail{email}!'+'\n')
+arquivo.write(f'Nome: "{nome}".  E-mail: {email}!'+'\n')
+clean()
 
 
 
@@ -33,6 +34,7 @@ fps = pygame.time.Clock()
 fundo = pygame.image.load("jogo_Educativo/fundo_lua.jpg")
 nariz = pygame.image.load("jogo_Educativo/nariz.png")
 corona = pygame.image.load("jogo_Educativo/coronavirus.png")
+mascara = pygame.image.load("jogo_Educativo/mascara.png")
 # [ini] cores em RGB (https://www.rapidtables.com/web/color/RGB_Color.html)
 preto = (0, 0, 0)
 branco = (255, 255, 255)
@@ -58,11 +60,6 @@ def escrevendoPlacar(desvios):
     texto = font.render("Desvios:"+str(desvios), True, branco)
     display.blit(texto, (0, 0))
     
-def mensagem():
-    font = pygame.font.SysFont(None, 25)
-    texto = font.render("nunca esqueça de usar máscara", True, branco)
-    display.blit(texto, (0, 550))
-    
 def jogo():
     pygame.mixer.music.load('jogo_Educativo/covidTrap.mp3')
     pygame.mixer.music.play(-1) # -1 é loopig infinito
@@ -75,6 +72,11 @@ def jogo():
     coronaLargura = 30
     coronaAltura = 30
     coronaVelocidade = 3
+    mascaraPosicaoX = largura * 0.80
+    mascaraPosicaoY = -100
+    mascaraLargura = 80
+    mascaraAltura = 80
+    mascaraVelocidade = 8
 
     desvios = 0
 
@@ -103,16 +105,24 @@ def jogo():
         # inserir imagem da tela
         display.blit(nariz, (narizPosicaoX, narizPosicaoY))
         display.blit(corona, (coronaPosicaoX, coronaPosicaoY))
+        display.blit(mascara, (mascaraPosicaoX, mascaraPosicaoY))
         coronaPosicaoY = coronaPosicaoY + coronaVelocidade
+        mascaraPosicaoY = mascaraPosicaoY + mascaraVelocidade
         # [ini] quando ele ultrapassa a barreira (fundo), começa em um lugar novo
         if coronaPosicaoY > altura:
             coronaPosicaoY = -220
             coronaVelocidade += 1
             coronaPosicaoX = random.randrange(0, largura-50)
             desvios = desvios + 1
+
+        if mascaraPosicaoY > altura:
+            mascaraPosicaoY = -220
+            mascaraVelocidade += 3
+            mascaraPosicaoX = random.randrange(0, largura-50)
+
+            
         # [fim] quando ele ultrapassa a barreira (fundo), começa em um lugar novo
         escrevendoPlacar(desvios)
-        mensagem()
         # [ini]análise de colisão:
         if narizPosicaoY < coronaPosicaoY + coronaAltura:
             if narizPosicaoX < coronaPosicaoX and narizPosicaoX+narizLargura > coronaPosicaoX or coronaPosicaoX+coronaLargura > narizPosicaoX and coronaPosicaoX+coronaLargura < narizPosicaoX+narizLargura:
