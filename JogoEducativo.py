@@ -71,6 +71,13 @@ def escrevendoPlacar(desvios):
     texto = font.render("Desvios:"+str(desvios), True, branco)
     display.blit(texto, (0, 0))
     
+
+def missao():
+    font = pygame.font.SysFont(None, 27)
+    texto = font.render("Tente pegar a máscara", True, branco)
+    display.blit(texto, (300, 0))
+
+
 def jogo():
     pygame.mixer.music.load('jogo_Educativo/covidTrap.mp3')
     pygame.mixer.music.play(-1) # -1 é loopig infinito
@@ -134,6 +141,7 @@ def jogo():
             
         # [fim] quando ele ultrapassa a barreira (fundo), começa em um lugar novo
         escrevendoPlacar(desvios)
+        missao()
         # [ini]análise de colisão:
         if narizPosicaoY < coronaPosicaoY + coronaAltura:
             if narizPosicaoX < coronaPosicaoX and narizPosicaoX+narizLargura > coronaPosicaoX or coronaPosicaoX+coronaLargura > narizPosicaoX and coronaPosicaoX+coronaLargura < narizPosicaoX+narizLargura:
