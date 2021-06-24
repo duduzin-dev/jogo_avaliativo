@@ -20,10 +20,14 @@ arquivo.write(f'Nome: "{nome}".  E-mail: {email}!'+'\n')
 clean()
 
 
-
+def vitoria():
+    pygame.mixer.Sound.play(champion)
+    pygame.mixer.music.stop()
+    message_display("Parabés você venceu o covid!")
 
 pygame.init()  # função para iniciar o pygame
 espirroSound = pygame.mixer.Sound("jogo_Educativo/espirro.mp3")
+champion = pygame.mixer.Sound("jogo_Educativo/vitoria.mp3")
 icone = pygame.image.load("jogo_Educativo/icon.ico")
 pygame.display.set_caption("Anti_covid_Game")
 pygame.display.set_icon(icone)
@@ -127,6 +131,13 @@ def jogo():
         if narizPosicaoY < coronaPosicaoY + coronaAltura:
             if narizPosicaoX < coronaPosicaoX and narizPosicaoX+narizLargura > coronaPosicaoX or coronaPosicaoX+coronaLargura > narizPosicaoX and coronaPosicaoX+coronaLargura < narizPosicaoX+narizLargura:
                 dead(desvios)
+
+        if narizPosicaoY < mascaraPosicaoY + mascaraAltura:
+            if narizPosicaoX < mascaraPosicaoX and narizPosicaoX+narizLargura > mascaraPosicaoX or mascaraPosicaoX+mascaraLargura > narizPosicaoX and mascaraPosicaoX+mascaraLargura < narizPosicaoX+narizLargura:
+                vitoria()
+                pygame.quit()
+
+
         # [fim]análise de colisão:
         pygame.display.update()
         fps.tick(60)
