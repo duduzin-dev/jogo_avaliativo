@@ -15,8 +15,8 @@ clean()
 
 nome = input('Digite seu nome: ')
 email = input('Digite seu E-mail: ')
-arquivo = open('E-mail_e_Senha.txt', 'a')
-arquivo.write(f'Nome: "{nome}".  E-mail: {email}!'+'\n')
+archive = open('E-mail_e_Senha.txt', 'a')
+archive.write(f'Nome: "{nome}".  E-mail: {email}!'+'\n')
 clean()
 
 
@@ -74,7 +74,7 @@ def escrevendoPlacar(desvios):
 
 def missao():
     font = pygame.font.SysFont(None, 27)
-    texto = font.render("Tente pegar a máscara", True, branco)
+    texto = font.render("Tente pegar a máscara!", True, branco)
     display.blit(texto, (300, 0))
 
 
