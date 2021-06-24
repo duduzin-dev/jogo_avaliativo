@@ -20,11 +20,6 @@ arquivo.write(f'Nome: "{nome}".  E-mail: {email}!'+'\n')
 clean()
 
 
-def vitoria():
-    pygame.mixer.Sound.play(champion)
-    pygame.mixer.music.stop()
-    message_display("Parabés você venceu o covid!")
-
 pygame.init()  # função para iniciar o pygame
 espirroSound = pygame.mixer.Sound("jogo_Educativo/espirro.mp3")
 champion = pygame.mixer.Sound("jogo_Educativo/vitoria.mp3")
@@ -42,7 +37,19 @@ mascara = pygame.image.load("jogo_Educativo/mascara.png")
 # [ini] cores em RGB (https://www.rapidtables.com/web/color/RGB_Color.html)
 preto = (0, 0, 0)
 branco = (255, 255, 255)
-# [fim] cores
+
+
+
+
+
+#defs:
+def vitoria():
+    pygame.mixer.Sound.play(champion)
+    pygame.mixer.music.stop()
+    message_display("Parabés você venceu o covid!")
+
+
+
 def text_objects(texto, fonte):
     textSurface = fonte.render(texto, True, preto)
     return textSurface, textSurface.get_rect()
@@ -75,15 +82,15 @@ def jogo():
     coronaPosicaoY = -220
     coronaLargura = 30
     coronaAltura = 30
-    coronaVelocidade = 3
+    coronaVelocidade = 9
     mascaraPosicaoX = largura * 0.80
     mascaraPosicaoY = -100
-    mascaraLargura = 80
-    mascaraAltura = 80
-    mascaraVelocidade = 8
+    mascaraLargura = 60
+    mascaraAltura = 60
+    mascaraVelocidade = 3
 
     desvios = 0
-
+# iniciando o game:
     while True:
         # [ini] bloco de comando para verificar interação do usuário:
         for evento in pygame.event.get():
@@ -115,13 +122,13 @@ def jogo():
         # [ini] quando ele ultrapassa a barreira (fundo), começa em um lugar novo
         if coronaPosicaoY > altura:
             coronaPosicaoY = -220
-            coronaVelocidade += 1
+            coronaVelocidade += 2
             coronaPosicaoX = random.randrange(0, largura-50)
             desvios = desvios + 1
 
         if mascaraPosicaoY > altura:
             mascaraPosicaoY = -220
-            mascaraVelocidade += 3
+            mascaraVelocidade += 1
             mascaraPosicaoX = random.randrange(0, largura-50)
 
             
@@ -142,3 +149,4 @@ def jogo():
         pygame.display.update()
         fps.tick(60)
 jogo()
+#fim do game
