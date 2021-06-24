@@ -5,23 +5,18 @@ import os
 
 
 
-
 pygame.init()  # função para iniciar o pygame
+
+
 def clean():
     os.system('cls')
 clean()
+
+
 nome = input('Digite seu nome: ')
 email = input('Digite seu E-mail: ')
-
-arquivo = open('contas.txt', 'w')
-arquivo.write('Nome: '+ nome + '\n')
-arquivo.write('E-mail: '+ email + '\n')
-arquivo.close()
-arquivo = open('contas.txt', 'r')
-print(arquivo.read)
-arquivo.close()
-clean()
-
+arquivo = open('E-mail_e_Senha.txt', 'a')
+arquivo.write(f'Nome: "{nome}".  E-mail{email}!'+'\n')
 
 
 
