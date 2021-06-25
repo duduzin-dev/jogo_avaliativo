@@ -21,19 +21,19 @@ clean()
 
 
 pygame.init()  # função para iniciar o pygame
-espirroSound = pygame.mixer.Sound("jogo_Educativo/espirro.mp3")
-champion = pygame.mixer.Sound("jogo_Educativo/vitoria.mp3")
-icone = pygame.image.load("jogo_Educativo/icon.ico")
+espirroSound = pygame.mixer.Sound("imagens/espirro.mp3")
+champion = pygame.mixer.Sound("imagens/vitoria.mp3")
+icone = pygame.image.load("imagens/icon.ico")
 pygame.display.set_caption("Anti_covid_Game")
 pygame.display.set_icon(icone)
 largura = 800
 altura = 600
 display = pygame.display.set_mode((largura, altura))
 fps = pygame.time.Clock()
-fundo = pygame.image.load("jogo_Educativo/fundo_lua.jpg")
-nariz = pygame.image.load("jogo_Educativo/nariz.png")
-corona = pygame.image.load("jogo_Educativo/coronavirus.png")
-mascara = pygame.image.load("jogo_Educativo/mascara.png")
+fundo = pygame.image.load("imagens/fundo_lua.jpg")
+nariz = pygame.image.load("imagens/nariz.png")
+corona = pygame.image.load("imagens/coronavirus.png")
+mascara = pygame.image.load("imagens/mascara.png")
 # [ini] cores em RGB (https://www.rapidtables.com/web/color/RGB_Color.html)
 preto = (0, 0, 0)
 branco = (255, 255, 255)
@@ -79,7 +79,7 @@ def missao():
 
 
 def jogo():
-    pygame.mixer.music.load('jogo_Educativo/covidTrap.mp3')
+    pygame.mixer.music.load('imagens/covidTrap.mp3')
     pygame.mixer.music.play(-1) # -1 é loopig infinito
     narizPosicaoX = largura * 0.45
     narizPosicaoY = altura * 0.8
